@@ -6,7 +6,7 @@ Repository for DAA Assignments. Submit via fork and pull request, one submission
 **Instructor:** Dr. B. Sangeetha
 **Institution:** PSG College of Technology
 **Semester:** Odd Semester (5th), Academic Year 2026–27
-**Submission deadline:** `<DD/MM/YYYY>`
+**Submission deadline:** `<30/10/2026>`
 **Contact:** bsg.it@psgtech.ac.in
 
 ---
