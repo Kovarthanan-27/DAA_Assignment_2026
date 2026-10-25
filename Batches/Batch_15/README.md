@@ -214,8 +214,42 @@ def branch_and_bound_bin_packing(items, capacity):
   $$L_{\text{revised}} = \max\left( \left\lceil \frac{\sum c_i}{16} \right\rceil, \left\lceil \frac{\sum r_i}{64} \right\rceil, \max_{S} |S| \right)$$
   Where $\max_S |S|$ is the maximum replica count of any microservice, corresponding to the **clique number $\omega(G)$** of the anti-affinity conflict graph.
 * **Method Revision**: Multidimensional FFD with Anti-Affinity (MFFD-AA) sorting by normalized resource sum $\left(\frac{c_i}{16} + \frac{r_i}{64}\right)$ and checking conflict set membership via server hash-sets in $O(1)$ time.
+### Changed Requirement: 2D Bin Packing with Anti-Affinity
+### 11. Changed Requirement: CPU, RAM and Anti-Affinity
 
----
+The original problem consolidates virtual machines onto the fewest physical servers, considering only CPU capacity. In the changed requirement, every VM requires both CPU and RAM, and two replicas of the same service must not share a server.
+
+**Revised constraints**
+
+For every server, the total CPU allocation must not exceed its CPU capacity, and the total RAM allocation must not exceed its RAM capacity. Additionally, no two VMs belonging to the same service may be assigned to the same server.
+
+**Algorithm**
+
+We use backtracking with branch-and-bound pruning. VMs are sorted by their normalized combined CPU and RAM requirements, in descending order. For each VM, the algorithm attempts to place it on an existing server if both capacity constraints and the anti-affinity constraint are satisfied. Otherwise, it considers opening a new server. Branches that cannot improve the best known solution are pruned, and equivalent server states are skipped.
+
+**Lower-bound estimate**
+
+Let total CPU demand be C, total RAM demand be R, CPU capacity per server be Cmax, and RAM capacity per server be Rmax. Let S be the largest number of VMs belonging to any one service.
+
+A lower bound on the number of servers is:
+
+LB = max(ceil(C/Cmax), ceil(R/Rmax), S).
+
+This bound is valid because the aggregate resource demands and anti-affinity constraints impose minimum server requirements.
+
+**Sample result**
+
+For the sample instance, the algorithm finds a valid placement using two servers. Server 1 contains VM1 and VM2, using 10 vCPUs and 14 GB RAM. Server 2 contains VM3 and VM4, using 7 vCPUs and 8 GB RAM. VM1 and VM3 belong to service A, so the anti-affinity constraint is satisfied.
+
+The lower bound is two servers, matching the solution. Therefore, the solution is optimal for this sample.
+
+**Correctness argument**
+
+The algorithm explores every non-equivalent feasible placement that could improve the current best solution. It rejects placements violating CPU capacity, RAM capacity or anti-affinity. It prunes a branch only when the number of servers already used cannot improve the incumbent solution. Therefore, pruning does not remove a better solution. When the search finishes, the best recorded feasible placement has the minimum number of servers.
+
+**Complexity**
+
+The search is exponential in the worst case. A loose upper bound is O(n^n) for n VMs, ignoring polynomial overhead for checking and updating server states. The recursion depth is O(n), and the placement state requires O(n) space, excluding the stored best solution. Branch-and-bound can improve practical performance but does not eliminate the exponential worst case.
 
 ## 12. Answers to the remaining scenario questions
 
@@ -234,3 +268,10 @@ def branch_and_bound_bin_packing(items, capacity):
   1. *Online vs Offline*: Kubernetes schedules streaming pods dynamically as they arrive, whereas our scenario performs an offline batch consolidation.
   2. *Live Migration Overhead*: Production DRS accounts for network bandwidth and VM freeze time penalties during live migration, trading off server consolidation against migration churn.
   3. *Multi-dimensional Scoring*: Kubernetes evaluates `NodeResourcesFit` (filtering) and `NodeResourcesBalancedAllocation` (scoring) to balance CPU and memory usage simultaneously.
+  ### Real-World Reference: Kubernetes Scheduler
+
+The Kubernetes Scheduler assigns Pods to suitable worker nodes by considering resource requests such as CPU and memory, along with scheduling constraints. Pod affinity and anti-affinity rules can influence which nodes are eligible for placement.
+
+Our implementation models a simplified version of this problem. It considers CPU and RAM capacities and prevents VMs belonging to the same service from sharing a server. It uses backtracking with branch-and-bound pruning to search for a minimum-server solution.
+
+Unlike our implementation, which attempts to find a globally optimal placement for a finite input, a production scheduler must also consider scalability, scheduling latency, operational constraints and changing cluster conditions. Consequently, a practical scheduler may use heuristic placement decisions rather than exhaustively searching all possible assignments.
