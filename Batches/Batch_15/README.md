@@ -5,8 +5,8 @@
 | Roll No. | Name | GitHub username | Part presented | Contribution (code, report sections) |
 | --- | --- | --- | --- | --- |
 | *24I327* | Kovarthanan R | `Kovarthanan-27` | Problem Modelling, Lower Bounds (Q1) | Sections 1, 12 (Q1), Report scaffolding, `RUN.md` |
-| *24I326* | P R Keshore | `prkeshore2007` | Data Structure Analysis for 5k VMs (Q4) | Section 2, `code/heuristics.py` (Segment Tree & FFD) |
-| *24I303* | Abishek Marimuthu | `abishekmarimuthu55` | Branch & Bound & 4 Technique Rejections | Sections 3, 4, 5, `code/main_solution.py` (B&B Solver) |
+| *24I326* | P R Keshore | `PRKESHORE` | Data Structure Analysis for 5k VMs (Q4) | Section 2, `code/heuristics.py` (Segment Tree & FFD) |
+| *24I303* | Abishek Marimuthu | `abishek-marimuthu` | Branch & Bound & 4 Technique Rejections | Sections 3, 4, 5, `code/main_solution.py` (B&B Solver) |
 | *24I312* | Dharaninath S N | `dharaninath-sn` | Hand-Trace, Correctness Proof & Benchmarking | Sections 6, 7, 8, 9, 10, `code/rejected_alternative.py`, `results/` |
 | *24I318* | Harrish R K | `HarrishRK9788` | Changed Requirement & Real-World System (Q5) | Sections 11, 12 (Q5), 13, `code/changed_requirement.py` |
 
