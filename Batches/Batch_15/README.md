@@ -4,16 +4,16 @@
 
 | Roll No. | Name | GitHub username | Part presented | Contribution (code, report sections) |
 | --- | --- | --- | --- | --- |
-| *(Roll 1)* | Kovarthanan (Lead) | `Kovarthanan-27` | Problem Modelling, Lower Bounds (Q1) | Sections 1, 12 (Q1), Report scaffolding, `RUN.md` |
-| *(Roll 2)* | Team Member 2 | *(Teammate2_GH)* | Data Structure Analysis for 5k VMs (Q4) | Section 2, `code/heuristics.py` (Segment Tree & FFD) |
-| *(Roll 3)* | Team Member 3 | *(Teammate3_GH)* | Branch & Bound & 4 Technique Rejections | Sections 3, 4, 5, `code/main_solution.py` (B&B Solver) |
-| *(Roll 4)* | Team Member 4 | *(Teammate4_GH)* | Hand-Trace, Correctness Proof & Benchmarking | Sections 6, 7, 8, 9, 10, `code/rejected_alternative.py`, `results/` |
-| *(Roll 5)* | Team Member 5 | *(Teammate5_GH)* | Changed Requirement & Real-World System (Q5) | Sections 11, 12 (Q5), 13, `code/changed_requirement.py` |
+| *24I327* | Kovarthanan R | `Kovarthanan-27` | Problem Modelling, Lower Bounds (Q1) | Sections 1, 12 (Q1), Report scaffolding, `RUN.md` |
+| *24I326* | P R Keshore | `prkeshore2007` | Data Structure Analysis for 5k VMs (Q4) | Section 2, `code/heuristics.py` (Segment Tree & FFD) |
+| *24I303* | Abishek Marimuthu | `abishekmarimuthu55` | Branch & Bound & 4 Technique Rejections | Sections 3, 4, 5, `code/main_solution.py` (B&B Solver) |
+| *24I312* | Dharaninath S N | `dharaninath-sn` | Hand-Trace, Correctness Proof & Benchmarking | Sections 6, 7, 8, 9, 10, `code/rejected_alternative.py`, `results/` |
+| *24I318* | Harrish R K | `HarrishRK9788` | Changed Requirement & Real-World System (Q5) | Sections 11, 12 (Q5), 13, `code/changed_requirement.py` |
 
 ## Presentation
 
-- Video link: `<Paste your unlisted YouTube or Google Drive link here>`
-- Duration: `11:15` (maximum 12:00)
+- Video link: `https://drive.google.com/file/d/1gJGnrN5BM4T6g1akuMxJGPtCBttOoTBe/view?usp=drivesdk`
+- Duration: `12:42`
 - Slides: [slides.pdf](slides.pdf)
 
 ---
